@@ -10,15 +10,18 @@ namespace Assignment5.Models
 {
     public class SeedData
     {
+        
         public static void EnsurePopulated (IApplicationBuilder application)
         {
             BooksDbContext context = application.ApplicationServices.
                 CreateScope().ServiceProvider.GetRequiredService<BooksDbContext>();
+            //Migrates data if there are pending migrations
 
             if (context.Database.GetPendingMigrations().Any())
             {
                 context.Database.Migrate();
             }
+            //Seeds datab if there are no saved data
             if (!context.Books.Any())
             {
                 context.Books.AddRange(
@@ -75,6 +78,17 @@ namespace Assignment5.Models
                         ISBN = "978-0804171281",
                         Classification = "Fiction",
                         Category = "Historical Fiction",
+                        Price = 13.33
+                    },
+                    new Books
+                    {
+                        Title = "Deep Work",
+                        AuthorFirstName = "Cal",
+                        AuthorLastName = "Newport",
+                        Publisher = "Grand Central Publishing",
+                        ISBN = "978-1455586691",
+                        Classification = "Non-Fiction",
+                        Category = "Self-Help",
                         Price = 13.33
                     }
 

@@ -62,6 +62,7 @@ namespace Assignment5
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
 
+            //Check if the database is populated
             SeedData.EnsurePopulated(app);
         }
     }
