@@ -2,15 +2,21 @@
     ViewData["Title"] = "Home Page";
 }
 @model IQueryable<Books>
-
+<!--Header-->
 <header class="card-header text-center">
-    <h1>Read Books</h1>
+    <h1>@ViewData["Title"]</h1>
 </header>
+<br />
+<br />
 
-<br /><br />
+
+<!--Book Table
+//center table on page-->
 <div class="row justify-content-center">
     <div class="col-auto">
         <table class="table-striped table-sm table-bordered">
+
+            <!--table header-->
             <thead class="table-dark">
                 <tr class="text-center">
                     <th>Title</th>
@@ -23,6 +29,8 @@
                 </tr>
             </thead>
             <tbody>
+
+                <!--Create row for each book-->
                 @foreach (var x in Model)
                 {
                     <tr>

@@ -18,11 +18,13 @@ namespace Assignment5.Controllers
         public HomeController(ILogger<HomeController> logger, IBooksRepository repository)
         {
             _logger = logger;
+            //load private repository variable with data
             _repository = repository;
         }
 
         public IActionResult Index()
         {
+            //load view with database
             return View(_repository.Books);
         }
 
