@@ -1,7 +1,9 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Book List";
 }
-@model IQueryable<Books>
+@model BookListViewModel
+
+
 <!--Header-->
 <header class="card-header text-center">
     <h1>@ViewData["Title"]</h1>
@@ -12,39 +14,39 @@
 
 <!--Book Table
 //center table on page-->
-<div class="row justify-content-center">
-    <div class="col-auto">
-        <table class="table-striped table-sm table-bordered">
 
-            <!--table header-->
-            <thead class="table-dark">
-                <tr class="text-center">
-                    <th>Title</th>
-                    <th>Author</th>
-                    <th>Publisher</th>
-                    <th>ISBN</th>
-                    <th>Classification</th>
-                    <th>Category</th>
-                    <th>Price</th>
-                </tr>
-            </thead>
-            <tbody>
 
-                <!--Create row for each book-->
-                @foreach (var x in Model)
-                {
-                    <tr>
-                        <td>@x.Title</td>
-                        <td>@x.AuthorFirstName @x.AuthorLastName</td>
-                        <td>@x.Publisher</td>
-                        <td>@x.ISBN</td>
-                        <td>@x.Classification</td>
-                        <td>@x.Category</td>
-                        <td>@x.Price</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+<!--Create card for each book-->
+
+@foreach (var x in Model.Books)
+{
+    <div class="card card-outline-primary m-1 p-1">
+        <div class="bg-faded p-1">
+            <h4>
+                @x.Title
+            <span class="badge badge-pill badge-primary" style="float:right">
+                <small><p>$@x.Price</p></small>
+            </span>
+        </h4>
+
+        <h5>@x.AuthorFirstName @x.AuthorLastName</h5>
+        <p>@x.Publisher</p>
+        <p>@x.ISBN</p>
+        <p>@x.Classification</p>
+        <p>@x.Category</p>
+        <p>@x.Pages</p>
+
+        </div>
+       
     </div>
-</div>
+}
+
+<!--page navigation-->
+<!--set current page to true-->
+<div page-model="@Model.PagingInfo" page-action="Index" 
+     page-classes-enabled="true" 
+     page-class="btn"
+     page-class-normal="btn-outline-dark"
+     page-class-selected="btn-primary"
+     class="btn-group pull-right"></div>
 

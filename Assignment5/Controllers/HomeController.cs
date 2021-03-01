@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Assignment5.Models;
+using Assignment5.Models.ViewModels;
 
 namespace Assignment5.Controllers
 {
@@ -15,6 +16,9 @@ namespace Assignment5.Controllers
 
         private IBooksRepository _repository;
 
+        //set number of items displayed per page
+        public int PageSize = 5;
+
         public HomeController(ILogger<HomeController> logger, IBooksRepository repository)
         {
             _logger = logger;
@@ -22,10 +26,27 @@ namespace Assignment5.Controllers
             _repository = repository;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int page = 1)
         {
-            //load view with database
-            return View(_repository.Books);
+            //default to page 1 of books
+
+            //load view with a limited number of books at a time
+            return View(new BookListViewModel
+                {
+                    //set Books attribute
+                    Books = _repository.Books
+                        .OrderBy(b => b.BookId)
+                        .Skip((page - 1) * PageSize)
+                        .Take(PageSize),
+
+                    //set PagingInfo attribute
+                    PagingInfo = new PagingInfo
+                    {
+                        CurrentPage = page,
+                        ItemsPerPage = PageSize,
+                        TotalNumItems = _repository.Books.Count()
+                    }
+                });  
         }
 
         public IActionResult Privacy()

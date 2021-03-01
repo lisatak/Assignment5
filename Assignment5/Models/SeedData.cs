@@ -21,7 +21,7 @@ namespace Assignment5.Models
             {
                 context.Database.Migrate();
             }
-            //Seeds datab if there are no saved data
+            //Seeds data if there are no saved data
             if (!context.Books.Any())
             {
                 context.Books.AddRange(
@@ -34,7 +34,8 @@ namespace Assignment5.Models
                         ISBN = "978-0451419439",
                         Classification = "Fiction",
                         Category = "Classic",
-                        Price = 9.95
+                        Price = 9.95,
+                        Pages = 1488
                     },
                     new Books
                     {
@@ -45,7 +46,8 @@ namespace Assignment5.Models
                         ISBN = "978-0743270755",
                         Classification = "Non-Fiction",
                         Category = "Biography",
-                        Price = 14.58
+                        Price = 14.58,
+                        Pages = 944
                     },
                     new Books
                     {
@@ -56,7 +58,8 @@ namespace Assignment5.Models
                         ISBN = "978-0553384611",
                         Classification = "Non-Fiction",
                         Category = "Biography",
-                        Price = 21.54
+                        Price = 21.54,
+                        Pages = 832
                     },
                     new Books
                     {
@@ -67,7 +70,8 @@ namespace Assignment5.Models
                         ISBN = "978-0812981254",
                         Classification = "Non-Fiction",
                         Category = "Historical",
-                        Price = 11.61
+                        Price = 11.61,
+                        Pages = 864
                     },
                     new Books
                     {
@@ -78,7 +82,8 @@ namespace Assignment5.Models
                         ISBN = "978-0804171281",
                         Classification = "Fiction",
                         Category = "Historical Fiction",
-                        Price = 13.33
+                        Price = 13.33,
+                        Pages = 528
                     },
                     new Books
                     {
@@ -89,8 +94,58 @@ namespace Assignment5.Models
                         ISBN = "978-1455586691",
                         Classification = "Non-Fiction",
                         Category = "Self-Help",
-                        Price = 13.33
+                        Price = 13.33,
+                        Pages = 288
+                    },
+                    new Books
+                    {
+                        Title = "Harry Potter",
+                        AuthorFirstName = "J. K.",
+                        AuthorLastName = "Rowling",
+                        Publisher = "A Publisher",
+                        ISBN = "978-1234567890",
+                        Classification = "Fiction",
+                        Category = "Fantasy",
+                        Price = 10.97,
+                        Pages = 318
+                    },
+                    new Books
+                    {
+                        Title = "Fight Club",
+                        AuthorFirstName = "Chuck",
+                        AuthorLastName = "Palahniuk",
+                        Publisher = "Soap Publishing",
+                        ISBN = "0987654321",
+                        Classification = "Fiction",
+                        Category = "Fighting",
+                        Price = 8.54,
+                        Pages = 358
+                    },
+                    new Books
+                    {
+                        Title = "Milkweed",
+                        AuthorFirstName = "Jerry",
+                        AuthorLastName = "Spinelli",
+                        Publisher = "Milk Publishing",
+                        ISBN = "978-1212121211",
+                        Classification = "Fiction",
+                        Category = "Historical Fiction",
+                        Price = 7.33,
+                        Pages = 239
+                    },
+                    new Books
+                    {
+                        Title = "The Book of Mormon",
+                        AuthorFirstName = "Mormon",
+                        AuthorLastName = "Moroni",
+                        Publisher = "Church of Jesus Christ of Latter-day Saints",
+                        ISBN = "978-9999999999",
+                        Classification = "Non-Fiction",
+                        Category = "Religious",
+                        Price = 0.99,
+                        Pages = 681
                     }
+
 
                 );
 
