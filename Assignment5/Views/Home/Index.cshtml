@@ -11,42 +11,22 @@
 <br />
 <br />
 
-
-<!--Book Table
-//center table on page-->
-
-
 <!--Create card for each book-->
 
 @foreach (var x in Model.Books)
 {
-    <div class="card card-outline-primary m-1 p-1">
-        <div class="bg-faded p-1">
-            <h4>
-                @x.Title
-            <span class="badge badge-pill badge-primary" style="float:right">
-                <small><p>$@x.Price</p></small>
-            </span>
-        </h4>
-
-        <h5>@x.AuthorFirstName @x.AuthorLastName</h5>
-        <p>@x.Publisher</p>
-        <p>@x.ISBN</p>
-        <p>@x.Classification</p>
-        <p>@x.Category</p>
-        <p>@x.Pages</p>
-
-        </div>
-       
-    </div>
+    <!--display partial view for each book-->
+    <partial name="BookSummary" model="x" />
 }
 
 <!--page navigation-->
-<!--set current page to true-->
+<!--set page classes enabed to true-->
 <div page-model="@Model.PagingInfo" page-action="Index" 
      page-classes-enabled="true" 
      page-class="btn"
      page-class-normal="btn-outline-dark"
      page-class-selected="btn-primary"
-     class="btn-group pull-right"></div>
+     page-url-category="@Model.CurrentCategory"
+     class="btn-group pull-right">
+</div>
 

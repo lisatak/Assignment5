@@ -57,12 +57,28 @@ namespace Assignment5
 
             app.UseEndpoints(endpoints =>
             {
+                //url for seaching by category and page
+                endpoints.MapControllerRoute("catpage",
+                    "{category}/{page:int}",
+                    new { Controller = "Home", action = "Index" });
+
+                //url for searching by page
+                endpoints.MapControllerRoute("page",
+                    "P{page:int}",
+                    new { Controller = "Home", action = "index" });
+
+                //url for search just by category, set default page number
+                endpoints.MapControllerRoute("category",
+                    "{category}",
+                    new { Controller = "Home", action = "index", page = 1 });
+
                 //pretty urls for different pages of books
                 endpoints.MapControllerRoute(
                     "pagination",
                     "P{page}",
                     new { Controller = "Home", action = "Index" });
 
+                //default
                 endpoints.MapDefaultControllerRoute();
             });
 

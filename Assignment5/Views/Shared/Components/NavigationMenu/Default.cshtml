@@ -1,0 +1,22 @@
+﻿@model IEnumerable<string>
+
+<!--Home button when not filtering by category-->
+<a class="btn btn-block btn-outline-secondary" 
+   asp-action="Index" 
+   asp-controller="Home"
+   asp-route-category="">
+    Home
+</a>
+
+<!--buttons to filter by category-->
+@foreach (string category in Model)
+{
+    //Button styling depending on what category is clicked on
+    <a class="btn btn-block @(category == ViewBag.SelectedCategory ? "btn-primary" : "btn-outline-secondary")"
+       asp-action="Index"
+       asp-controller="Home"
+       asp-route-category="@category"
+       asp-route-page="1">
+        @category
+    </a>
+}

@@ -11,6 +11,6 @@ namespace Assignment5.Models.ViewModels
         public IEnumerable<Books> Books { get; set; }
         //Paging info for navigation at bottom of page
         public PagingInfo PagingInfo { get; set; }
-
+        public string CurrentCategory { get; set; }
     }
 }
