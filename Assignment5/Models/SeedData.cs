@@ -75,6 +75,18 @@ namespace Assignment5.Models
                     },
                     new Books
                     {
+                        Title = "Unbroken",
+                        AuthorFirstName = "Laura",
+                        AuthorLastName = "Hillenbrand",
+                        Publisher = "Random House",
+                        ISBN = "978-0812974492",
+                        Classification = "Non-Fiction",
+                        Category = "Historical",
+                        Price = 13.33,
+                        Pages = 528
+                    },
+                    new Books
+                    {
                         Title = "The Great Train Robbery",
                         AuthorFirstName = "Michael",
                         AuthorLastName = "Crichton",
@@ -82,8 +94,8 @@ namespace Assignment5.Models
                         ISBN = "978-0804171281",
                         Classification = "Fiction",
                         Category = "Historical Fiction",
-                        Price = 13.33,
-                        Pages = 528
+                        Price = 15.95,
+                        Pages = 288
                     },
                     new Books
                     {
@@ -94,8 +106,44 @@ namespace Assignment5.Models
                         ISBN = "978-1455586691",
                         Classification = "Non-Fiction",
                         Category = "Self-Help",
-                        Price = 13.33,
-                        Pages = 288
+                        Price = 14.99,
+                        Pages = 304
+                    },
+                    new Books
+                    {
+                        Title = "It's Your Ship",
+                        AuthorFirstName = "Michael",
+                        AuthorLastName = "Abrashoff",
+                        Publisher = "Grand Central Publishing",
+                        ISBN = "978-1455523023",
+                        Classification = "Non-Fiction",
+                        Category = "Self-Help",
+                        Price = 21.66,
+                        Pages = 240
+                    },
+                    new Books
+                    {
+                        Title = "The Virgin Way",
+                        AuthorFirstName = "Richard",
+                        AuthorLastName = "Branson",
+                        Publisher = "Portfolio",
+                        ISBN = "978-1591847984",
+                        Classification = "Non-Fiction",
+                        Category = "Business",
+                        Price = 29.16,
+                        Pages = 400
+                    },
+                    new Books
+                    {
+                        Title = "Sycamore Row",
+                        AuthorFirstName = "John",
+                        AuthorLastName = "Grisham",
+                        Publisher = "Bantam",
+                        ISBN = "978-0553393613",
+                        Classification = "Fiction",
+                        Category = "Thrillers",
+                        Price = 15.03,
+                        Pages = 642
                     },
                     new Books
                     {
