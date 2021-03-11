@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Assignment5.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -29,10 +30,20 @@ namespace Assignment5
 
             services.AddDbContext<BooksDbContext>(options =>
             {
-               options.UseSqlServer(Configuration["ConnectionStrings:BooksConnection"]);
+               options.UseSqlite(Configuration["ConnectionStrings:BooksConnection"]);
             });
 
             services.AddScoped<IBooksRepository, EFBooksRepository>();
+
+            services.AddRazorPages();
+
+            services.AddDistributedMemoryCache();
+
+            services.AddSession();
+
+            services.AddScoped<Cart>(sp => SessionCart.GetCart(sp));
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,6 +62,8 @@ namespace Assignment5
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            app.UseSession();
+
             app.UseRouting();
 
             app.UseAuthorization();
@@ -59,12 +72,12 @@ namespace Assignment5
             {
                 //url for seaching by category and page
                 endpoints.MapControllerRoute("catpage",
-                    "{category}/{page:int}",
+                    "{category}/{pageNum:int}",
                     new { Controller = "Home", action = "Index" });
 
                 //url for searching by page
                 endpoints.MapControllerRoute("page",
-                    "P{page:int}",
+                    "P{pageNum:int}",
                     new { Controller = "Home", action = "index" });
 
                 //url for search just by category, set default page number
@@ -75,11 +88,13 @@ namespace Assignment5
                 //pretty urls for different pages of books
                 endpoints.MapControllerRoute(
                     "pagination",
-                    "P{page}",
+                    "P{pageNum}",
                     new { Controller = "Home", action = "Index" });
 
                 //default
                 endpoints.MapDefaultControllerRoute();
+
+                endpoints.MapRazorPages();
             });
 
             //Check if the database is populated

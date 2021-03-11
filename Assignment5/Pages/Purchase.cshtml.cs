@@ -14,9 +14,10 @@ namespace Assignment5.Pages
         private IBooksRepository repository;
 
         //Constructor
-        public PurchaseModel (IBooksRepository repo)
+        public PurchaseModel (IBooksRepository repo, Cart cartService)
         {
             repository = repo;
+            Cart = cartService;
         }
 
         //Properties
@@ -24,22 +25,27 @@ namespace Assignment5.Pages
         public string ReturnUrl { get; set; }
         
         //Methods
+        //to return to last shopping page
         public void OnGet(string returnUrl)
         {
             ReturnUrl = returnUrl ?? "/";
-            Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
         }
 
+        //add line to cart
         public IActionResult OnPost(int bookId, string returnUrl)
         {
             Books book = repository.Books.FirstOrDefault(b => b.BookId == bookId);
 
-            Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
-
             Cart.AddItem(book, 1);
 
-            HttpContext.Session.SetJson("cart", Cart);
+            return RedirectToPage(new { returnUrl = returnUrl });
+        }
 
+        //remove a line from cart
+        public IActionResult OnPostRemove(int bookId, string returnUrl)
+        {
+            Cart.RemoveLine(Cart.Lines.First(b =>
+                b.Book.BookId == bookId).Book);
             return RedirectToPage(new { returnUrl = returnUrl });
         }
     }

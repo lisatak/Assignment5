@@ -2,10 +2,11 @@
 @model Assignment5.Pages.PurchaseModel
 @{
 }
-
+<!--cart page-->
 <p>Your Cart</p>
 
 <table class="table table-bordered table-striped">
+    <!--table head-->
     <thead>
         <tr>
             <th>Book</th>
@@ -15,18 +16,29 @@
         </tr>
     </thead>
 
+    <!--table body (cart items)-->
     <tbody>
         @foreach (var line in Model.Cart.Lines)
         {
-            <tr>
-                <td class="text-left">@line.Book.Title</td>
-                <td class="text-center">@line.Quantity</td>
-                <td class="text-right"></td>
-                <td class="text-right">@((line.Quantity * 25).ToString("c"))</td>
-            </tr>
+        <tr>
+            <td class="text-left">@line.Book.Title</td>
+            <td class="text-center">@line.Quantity</td>
+            <td class="text-right">@line.Book.Price</td>
+            <td class="text-right">@((line.Quantity * line.Book.Price).ToString("c"))</td>
+            <td class="text-center">
+                <form asp-page-handler="Remove" method="post">
+                    <input type="hidden" name="BookID" value="@line.Book.BookId" />
+                    <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
+                    <button type="submit" class="btn btn-sm btn-danger">
+                        Remove
+                    </button>
+                </form>
+            </td>
+        </tr>
         }
     </tbody>
 
+    <!--table foot (subtotal)-->
     <tfoot>
         <tr>
             <td colspan="3" class="text-right">Total:</td>
@@ -36,6 +48,7 @@
 
 </table>
 
+<!-- continue shopping -->
 <div class="text-center">
     <a class="btn btn-primary" href="@Model.ReturnUrl">Continue Shopping</a>
 </div>

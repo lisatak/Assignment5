@@ -7,14 +7,18 @@ namespace Assignment5.Models
 {
     public class Cart
     {
+        //properties
         public List<CartLine> Lines { get; set; } = new List<CartLine>();
 
-        public void AddItem (Books book, int quantity)
+        //methods
+        //add item to cart
+        public virtual void AddItem (Books book, int quantity)
         {
+            //check if book has already been added to cart
             CartLine line = Lines
                   .Where(b => b.Book.BookId == book.BookId)
                   .FirstOrDefault();
-
+            //set quantity to one if not already added
             if (line == null)
             {
                 Lines.Add(new CartLine
@@ -23,19 +27,24 @@ namespace Assignment5.Models
                     Quantity = quantity,
                 });
             }
+            //increase quantity if book was already added
             else
             {
                 line.Quantity += quantity;
             }
         }
 
-        public void RemoveLine(Books book) =>
+        //remove item from cart
+        public virtual void RemoveLine(Books book) =>
             Lines.RemoveAll(x => x.Book.BookId == book.BookId);
 
-        public void Clear() => Lines.Clear();
+        //clear cart
+        public virtual void Clear() => Lines.Clear();
 
-        public decimal ComputeTotalSum() => Lines.Sum(e => 25 * e.Quantity);
+        //calculate subtotal
+        public decimal ComputeTotalSum() => (decimal)Lines.Sum(e => e.Book.Price * e.Quantity);
 
+        //a line for each book in the cart
         public class CartLine
         {
             public int CartLineID { get; set; }

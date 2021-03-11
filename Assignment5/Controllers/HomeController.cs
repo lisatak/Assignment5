@@ -26,7 +26,7 @@ namespace Assignment5.Controllers
             _repository = repository;
         }
 
-        public IActionResult Index(string category, int page = 1)
+        public IActionResult Index(string category, int pageNum = 1)
         {
             //default to page 1 of books
 
@@ -37,13 +37,13 @@ namespace Assignment5.Controllers
                     Books = _repository.Books
                         .Where(b => category == null || b.Category == category)
                         .OrderBy(b => b.BookId)
-                        .Skip((page - 1) * PageSize)
+                        .Skip((pageNum - 1) * PageSize)
                         .Take(PageSize),
 
                     //set PagingInfo attribute
                     PagingInfo = new PagingInfo
                     {
-                        CurrentPage = page,
+                        CurrentPage = pageNum,
                         ItemsPerPage = PageSize,
                         //determine number of pages depending on whether a category is selected
                         TotalNumItems = category == null ? _repository.Books.Count() :
