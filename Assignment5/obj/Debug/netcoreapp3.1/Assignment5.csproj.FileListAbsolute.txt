@@ -79,3 +79,7 @@ C:\Users\lctak\Documents\test\Assignment5\Assignment5\bin\Debug\netcoreapp3.1\ru
 C:\Users\lctak\Documents\test\Assignment5\Assignment5\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 C:\Users\lctak\Documents\test\Assignment5\Assignment5\obj\Debug\netcoreapp3.1\Razor\Views\Shared\BookSummary.cshtml.g.cs
 C:\Users\lctak\Documents\test\Assignment5\Assignment5\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\NavigationMenu\Default.cshtml.g.cs
+C:\Users\lctak\Documents\test\Assignment5\Assignment5\obj\Debug\netcoreapp3.1\Razor\Pages\Purchase.cshtml.g.cs
+C:\Users\lctak\Documents\test\Assignment5\Assignment5\obj\Debug\netcoreapp3.1\Razor\Pages\Shared\_CartLayout.cshtml.g.cs
+C:\Users\lctak\Documents\test\Assignment5\Assignment5\obj\Debug\netcoreapp3.1\Razor\Pages\_ViewImports.cshtml.g.cs
+C:\Users\lctak\Documents\test\Assignment5\Assignment5\obj\Debug\netcoreapp3.1\Razor\Pages\_ViewStart.cshtml.g.cs
